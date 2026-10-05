@@ -1,0 +1,9 @@
+Pertanyaan 1: Apa keuntungan memisahkan header dan footer menjadi file component tersendiri?
+
+Jawaban:
+Keuntungannya adalah tidak perlu menulis ulang kode yang sama berulang kali di setiap halaman. Kalau ada perubahan (misalnya mau ubah menu navigasi atau tulisan di footer), kita cukup ubah di satu file component saja, lalu seluruh halaman lain akan otomatis ikut berubah. Kode jadi lebih rapi dan hemat waktu.
+
+Pertanyaan 2: Bagian mana pada halaman-halaman admin yang mengalami masalah yang sama seperti header/footer sebelum dipisah?
+
+Jawaban:
+Bagian sidebar (menu samping) dan topbar (header atas) di halaman admin. Sebelum dipisah, kodenya disalin-tempel di 14 file halaman admin yang berbeda. Akibatnya, kalau mau mengubah tampilan sidebar atau judul atas, kita harus mengedit 14 file tersebut satu per satu.
