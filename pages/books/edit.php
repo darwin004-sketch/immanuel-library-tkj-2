@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Buku: tampilan HTML, data dari book-repository, form ke actions/books. -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -16,16 +17,19 @@
   $book = getBook();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Edit Buku";
       $pageSubtitle = "Perbarui data buku, kategori, dan penulis";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/books/update.php">
           <input type="hidden" name="id" value="<?= $book['id'] ?>">
           <div class="form-card" style="margin-bottom:20px;">
