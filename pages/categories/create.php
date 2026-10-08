@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Kategori: data dari category-repository (getCategories/getCategory). -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,19 @@
 </head>
 <body>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Tambah Kategori";
       $pageSubtitle = "Buat kategori baru untuk mengelompokkan buku";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/categories/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Kategori</div>

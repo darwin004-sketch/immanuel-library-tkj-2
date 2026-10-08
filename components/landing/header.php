@@ -1,3 +1,4 @@
+  <!-- Component header landing: navigasi publik, dipakai di index.php lewat require_once. -->
   <header>
     <nav class="navbar">
       <a href="/index.php" class="brand">

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Penulis: data dari author-repository (getAuthors/getAuthor). -->
 <html lang="id">
 
 <head>
@@ -10,19 +11,23 @@
 
 <body>
   <?php
+    // Ambil data dari repository (satu sumber data).
     require '../../repositories/author-repository.php';
     $author = getAuthor();
   ?>
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Edit Penulis";
       $pageSubtitle = "Perbarui data penulis";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/authors/update.php">
           <input type="hidden" name="id" value="<?= $author['id'] ?>">
           <div class="form-card">

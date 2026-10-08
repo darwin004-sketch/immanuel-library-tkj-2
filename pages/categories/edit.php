@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Kategori: data dari category-repository (getCategories/getCategory). -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,20 +9,24 @@
 </head>
 <body>
   <?php
+    // Ambil data dari repository (satu sumber data).
     require '../../repositories/category-repository.php';
     $category = getCategory();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Edit Kategori";
       $pageSubtitle = "Perbarui data kategori";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/categories/update.php">
           <input type="hidden" name="id" value="<?= $category['id'] ?>">
           <div class="form-card">

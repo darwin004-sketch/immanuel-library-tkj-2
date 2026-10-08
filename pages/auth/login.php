@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Auth: BELUM diproses (session baru di TP 5), cukup bisa dibuka. -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">

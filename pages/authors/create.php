@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Penulis: data dari author-repository (getAuthors/getAuthor). -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,19 @@
 </head>
 <body>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Tambah Penulis";
       $pageSubtitle = "Daftarkan penulis baru ke sistem";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/authors/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Penulis</div>
