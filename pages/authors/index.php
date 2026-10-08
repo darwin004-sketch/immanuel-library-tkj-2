@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Penulis: data dari author-repository (getAuthors/getAuthor). -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,23 @@
 </head>
 <body>
   <?php
+    // Ambil data penulis dari repository agar satu sumber data (single source of truth).
+    // Ambil data dari repository (satu sumber data).
     require '../../repositories/author-repository.php';
+    // getAuthors() mengembalikan SEMUA penulis untuk ditampilkan lewat foreach di tabel.
     $authors = getAuthors();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
+      // Isi judul topbar: WAJIB diset sebelum require topbar (lihat tabel 2.A).
       $pageTitle = "Manajemen Penulis";
       $pageSubtitle = "Kelola data penulis yang terdaftar di sistem";
+      // Tampilkan component topbar yang sama di semua halaman admin.
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
       <div class="app-content">
@@ -42,7 +50,8 @@
               </tr>
             </thead>
             <tbody>
-                <?php foreach ($authors as $author) : ?>
+                <?php // foreach: tampilkan SEMUA data baris per baris.
+              foreach ($authors as $author) : ?>
               <tr>
                 <td>
                   <div class="cell-primary">
@@ -52,7 +61,9 @@
                 </td>
                 <td><span class="badge badge-muted"><?= $author['total_books'] ?> buku</span></td>
                 <td>
+                  <!-- Aksi Edit (ke form edit) dan Hapus (ke destroy + konfirmasi). -->
                   <div class="cell-actions">
+                    <a href="edit.php?id=<?= $author['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
                     <a href="../../actions/authors/destroy.php?id=<?= $author['id'] ?>"
                       class="btn btn-danger btn-sm"
                       onclick="return confirm('Yakin ingin menghapus penulis ini?')">Hapus</a>
