@@ -1,4 +1,6 @@
 <?php
+// Repository: sumber data sementara (array) sebelum dipakai database MySQL di TP 5.
+// getCategories() = kembalikan SEMUA kategori untuk tabel + dropdown form buku.
 function getCategories() {
   return [
     ["id" => 1, "name" => "Fiksi",     "description" => "Novel dan cerita rekaan",       "total_books" => 3],
@@ -8,6 +10,7 @@ function getCategories() {
   ];
 }
 
+// getCategory() = kembalikan SATU kategori untuk form edit.
 function getCategory() {
   return ["id" => 1, "name" => "Fiksi", "description" => "Novel dan cerita rekaan", "total_books" => 3];
 }
