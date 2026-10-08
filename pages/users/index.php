@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Pengguna: data dari user-repository (getUsers/getUser). -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,21 @@
 </head>
 <body>
   <?php
+    // Ambil data pengguna dari repository agar satu sumber data.
+    // Ambil data dari repository (satu sumber data).
     require '../../repositories/user-repository.php';
+    // getUsers() mengembalikan SEMUA pengguna untuk ditampilkan lewat foreach.
     $users = getUsers();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Manajemen Pengguna";
       $pageSubtitle = "Daftar seluruh pengguna beserta perannya (role)";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
@@ -44,7 +50,8 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($users as $user) : ?>
+              <?php // foreach: tampilkan SEMUA data baris per baris.
+              foreach ($users as $user) : ?>
               <tr>
                 <td>
                   <div class="cell-primary">
@@ -62,6 +69,7 @@
                 </td>
                 <td>
                   <div class="cell-actions">
+                    <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
                     <a href="../../actions/users/destroy.php?id=<?= $user['id'] ?>"
                       class="btn btn-danger btn-sm"
                       onclick="return confirm('Yakin ingin menghapus pengguna ini?')">Hapus</a>
