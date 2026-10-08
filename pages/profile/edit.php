@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Profil: data dari getUser()+getProfile(), form ke actions/profile/update. -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,22 +9,26 @@
 </head>
 <body>
   <?php
+    // Ambil data dari repository (satu sumber data).
     require '../../repositories/user-repository.php';
 
     $user = getUser();
     $profile = getProfile();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Profil Saya";
       $pageSubtitle = "Kelola data akun dan profil Anda";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
       <div class="app-content">
+        <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/profile/update.php">
           <div class="form-card" style="margin-bottom:20px;">
             <div class="form-section-title">Data Akun</div>
