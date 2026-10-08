@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Halaman Buku: tampilan HTML, data dari book-repository, form ke actions/books. -->
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,19 @@
 </head>
 <body>
   <?php
-  require '../../repositories/book-repository.php';
+  // Ambil data dari repository (satu sumber data).
+    require '../../repositories/book-repository.php';
   $book =getBook();
   ?>
   <div class="app-shell">
-  <?php require_once('../../components/admin/sidebar.php'); ?>
+  <?php // Tampilkan sidebar component agar tidak duplikasi.
+  require_once('../../components/admin/sidebar.php'); ?>
 
     <main class="app-main">
     <?php
       $pageTitle = "Detail Buku";
       $pageSubtitle = "Informasi lengkap buku beserta kategori dan penulis";
+      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
 
@@ -36,7 +40,8 @@
               <div class="detail-label">Penulis</div>
               <div class="detail-value">
                 <div class="chip-list">
-                  <?php foreach ($book['authors'] as $authorName): ?>
+                  <?php // foreach: tampilkan SEMUA data baris per baris.
+              foreach ($book['authors'] as $authorName): ?>
                     <span class="chip"><?= $authorName ?></span>
                   <?php endforeach; ?>
                 </div>

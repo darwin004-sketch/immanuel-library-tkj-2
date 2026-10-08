@@ -1,4 +1,6 @@
 <?php
+// Repository: sumber data sementara (array) sebelum dipakai database MySQL di TP 5.
+// getBooks() = kembalikan BANYAK buku untuk tabel index (foreach).
 function getBooks() {
   return [
     [
@@ -43,6 +45,7 @@ function getBooks() {
     ],
   ];
 }
+// getBook() = kembalikan SATU buku untuk show/edit (tanpa parameter, sesuai TP 4).
 function getBook() {
   return [
     "id" => 5,
