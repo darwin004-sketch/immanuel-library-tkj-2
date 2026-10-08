@@ -1,8 +1,9 @@
 <?php
-// Component sidebar admin.
-// File ini hanya berisi potongan HTML <aside>, tanpa <html>/<head>/<body>.
-// Dipakai bersama oleh 14 halaman admin lewat require_once agar tidak duplikasi.
-// Sengaja dibuat sama persis di semua halaman (tanpa menu active) sesuai Sub-bagian 2.A.
+$pageTitle = 'Manajemen Buku'; // Disesuaikan untuk tiap halaman sesuai tabel petunjuk
+$pageSubtitle = 'Kelola data buku perpustakaan';
+
+require_once '../../components/admin/sidebar.php';
+require_once '../../components/admin/topbar.php';
 ?>
 <aside class="app-sidebar">
   <div class="brand">
