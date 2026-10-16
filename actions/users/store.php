@@ -1,25 +1,52 @@
 <?php
-<<<<<<< HEAD
-// Action: hanya memproses data (tanpa tampilan), sesuai alur pages -> actions.
-// isset() = validasi: pastikan data form benar-benar dikirim sebelum diproses.
-if (isset($_POST['name'])) {
-  echo "<h3>Data pengguna baru diterima:</h3>";
-  echo "<pre>";
-  // print_r() = bukti data diterima (simulasi simpan, DB baru di TP 5).
-  print_r($_POST);
-  echo "</pre>";
-} else {
-  echo "Tidak ada data yang dikirim.";
-}
-=======
 if (isset($_POST['store']) && $_SERVER['REQUEST_METHOD'] === "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $role = $_POST['role'];
+    try {
+    $pdo->beginTransaction();
 
-    print_r($_POST);
+    $title = $_POST["title"];
+    $isbn = $_POST["isbn"];
+    $year = $_POST['year'];
+    $stock = $_POST['stock'];
+    $description = $_POST['description'];
+    categoryId = $_POST['category_id'];
+
+    $query = "insert into books (title, isbn, year, stock, description) 
+    values (title, isbn, year, stock, description)
+    ";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+       'title' => $title,
+       'isbn' => $isbn,
+       'year'=> $year,
+       'stock' => $stock,
+       'description'=> $description
+       'category_id' => $categoryId
+      ]);
+
+      $bookId = $pdo->lastInsertId();
+
+      $query = "insert into book_categories (book_id, author_id) values (:book_id, :author_id)";
+      $stmt = $pdo->prepare($query);
+      $stmt->execute();
+
+      $authorIds = $_POST['author_ids'];
+      foreach ($authorIds as $authorId) {
+        $stmt->execute([
+            'book_id' => $bookId,
+            'author_id' => $authorId
+        ]);
+      }
+      
+
+      $pdo->commit();
+
+      header("Location: ../../pages/books/index.php");
+
+    } catch (PdoException $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+
 }
 
 ?>
->>>>>>> cdd929f (feat: update source code from video)
