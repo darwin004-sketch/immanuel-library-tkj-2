@@ -1,3 +1,8 @@
+<?php
+$title = "Beranda - Immanuel Library";
+
+?>
+
 <!DOCTYPE html>
 <!-- Halaman Immanuel Library. -->
 <html lang="id">
@@ -5,13 +10,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda - Perpustakaan Digital</title>
+  <title>
+    <?= $title ?>
+  </title>
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
-
-  <?php require_once('components/landing/header.php'); ?>
+  <?php require_once __DIR__ . "/components/landing/header.php" ?>
 
   <!-- ============ HERO ============ -->
   <section class="hero">
@@ -98,7 +104,7 @@
       </div>
     </div>
   </section>
-<?php require_once('components/landing/footer.php'); ?>
+  <?php require_once __DIR__ . "/components/landing/footer.php" ?>
 </body>
 
 </html>

@@ -1,8 +1,15 @@
 <?php
+<<<<<<< HEAD
 // Repository: sumber data sementara (array) sebelum dipakai database MySQL di TP 5.
 // getBooks() = kembalikan BANYAK buku untuk tabel index (foreach).
 function getBooks() {
   return [
+=======
+
+function getBooks()
+{
+  $books = [
+>>>>>>> cdd929f (feat: update source code from video)
     [
       "id" => 1,
       "title" => "Laskar Pelangi",
@@ -44,20 +51,30 @@ function getBooks() {
       "authors" => ["Pramoedya Ananta Toer", "Sapardi Djoko Damono"],
     ],
   ];
+
+  return $books;
 }
+<<<<<<< HEAD
 // getBook() = kembalikan SATU buku untuk show/edit (tanpa parameter, sesuai TP 4).
 function getBook() {
   return [
+=======
+
+function getBook()
+{
+
+  $book = [
+>>>>>>> cdd929f (feat: update source code from video)
     "id" => 5,
     "title" => "Antologi Rasa Nusantara",
     "isbn" => "978-602-1234-56-7",
     "year" => 2021,
     "stock" => 4,
-    "category" => "Fiksi",
     "category_id" => 1,
+    "category" => "Fiksi",
     "description" => "Kumpulan puisi dan cerita pendek dari berbagai penulis Nusantara.",
-    "authors" => ["Pramoedya Ananta Toer", "Sapardi Djoko Damono"],
     "author_ids" => [4, 5],
+    "authors" => ["Pramoedya Ananta Toer", "Sapardi Djoko Damono"],
   ];
+  return $book;
 }
-

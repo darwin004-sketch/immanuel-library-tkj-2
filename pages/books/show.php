@@ -1,3 +1,12 @@
+<?php
+require_once __DIR__ . "/../../repositories/book-repository.php";
+
+$book = getBook();
+
+$pageTitle = "Detail Buku";
+$pageSubtitle = "Informasi lengkap buku beserta kategori dan penulis";
+?>
+
 <!DOCTYPE html>
 <!-- Halaman Buku: tampilan HTML, data dari book-repository, form ke actions/books. -->
 <html lang="id">
@@ -8,6 +17,7 @@
   <link rel="stylesheet" href="../../styles/books/show.css">
 </head>
 <body>
+<<<<<<< HEAD
   <?php
   // Ambil data dari repository (satu sumber data).
     require '../../repositories/book-repository.php';
@@ -24,6 +34,13 @@
       // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
+=======
+  <div class="app-shell">
+  <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
+
+    <main class="app-main">
+    <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
+>>>>>>> cdd929f (feat: update source code from video)
 
       <div class="app-content">
         <div class="detail-grid">

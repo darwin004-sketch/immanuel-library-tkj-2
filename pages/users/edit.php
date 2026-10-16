@@ -1,3 +1,12 @@
+<?php
+require_once __DIR__ . "/../../repositories/user-repository.php";
+
+$user = getUser();
+
+$pageTitle = "Edit Pengguna";
+$pageSubtitle = "Perbarui data dan role pengguna";
+?>
+
 <!DOCTYPE html>
 <!-- Halaman Pengguna: data dari user-repository (getUsers/getUser). -->
 <html lang="id">
@@ -8,6 +17,7 @@
   <link rel="stylesheet" href="../../styles/users/edit.css">
 </head>
 <body>
+<<<<<<< HEAD
   <?php
     // Ambil data dari repository (satu sumber data).
     require '../../repositories/user-repository.php';
@@ -24,6 +34,14 @@
       // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
+=======
+  <div class="app-shell">
+  <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
+
+    <main class="app-main">
+    <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
+
+>>>>>>> cdd929f (feat: update source code from video)
       <div class="app-content">
         <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
         <form method="POST" action="../../actions/users/update.php">
@@ -50,7 +68,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+              <button type="submit" name="update" class="btn btn-primary">Simpan Perubahan</button>
             </div>
           </div>
         </form>

@@ -1,3 +1,16 @@
+<?php
+require_once __DIR__ . "/../../repositories/book-repository.php";
+require_once __DIR__ . "/../../repositories/category-repository.php";
+require_once __DIR__ . "/../../repositories/author-repository.php";
+
+$book = getBook();
+$categories = getCategories();
+$authors = getAuthors();
+
+$pageTitle = "Edit Buku";
+$pageSubtitle = "Perbarui data buku, kategori, dan penulis";
+?>
+
 <!DOCTYPE html>
 <!-- Halaman Buku: tampilan HTML, data dari book-repository, form ke actions/books. -->
 <html lang="id">
@@ -8,6 +21,7 @@
   <link rel="stylesheet" href="../../styles/books/edit.css">
 </head>
 <body>
+<<<<<<< HEAD
   <?php
   // Ambil data buku + opsi dari repository (satu sumber data, lihat Sub-bagian 2.G).
   // Ambil data dari repository (satu sumber data).
@@ -32,6 +46,13 @@
       // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
+=======
+  <div class="app-shell">
+  <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
+
+    <main class="app-main">
+    <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
+>>>>>>> cdd929f (feat: update source code from video)
 
       <div class="app-content">
         <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
@@ -61,8 +82,12 @@
               <div class="form-group">
                 <label for="category_id">Kategori</label>
                 <select id="category_id" name="category_id">
+<<<<<<< HEAD
                   <?php // foreach: tampilkan SEMUA data baris per baris.
               foreach ($categories as $category): ?>
+=======
+                  <?php foreach ($categories as $category): ?>
+>>>>>>> cdd929f (feat: update source code from video)
                     <option value="<?= $category['id'] ?>" <?= $category['id'] === $book['category_id'] ? 'selected' : '' ?>><?= $category['name'] ?></option>
                   <?php endforeach; ?>
                 </select>
@@ -79,8 +104,12 @@
             <div class="form-group">
               <label>Pilih Penulis (bisa lebih dari satu)</label>
               <div class="checkbox-grid">
+<<<<<<< HEAD
                 <?php // foreach: tampilkan SEMUA data baris per baris.
               foreach ($authors as $author): ?>
+=======
+                <?php foreach ($authors as $author): ?>
+>>>>>>> cdd929f (feat: update source code from video)
                   <label class="checkbox-item">
                     <input type="checkbox" name="author_ids[]" value="<?= $author['id'] ?>" <?= in_array($author['id'], $book['author_ids']) ? 'checked' : '' ?>>
                     <?= $author['name'] ?>
@@ -91,7 +120,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+              <button type="submit" name="update" class="btn btn-primary">Simpan Perubahan</button>
             </div>
           </div>
         </form>

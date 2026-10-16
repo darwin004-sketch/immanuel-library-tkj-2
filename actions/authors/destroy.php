@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // Action: hanya memproses data (tanpa tampilan), sesuai alur pages -> actions.
 // isset() = validasi: pastikan id dari URL benar-benar ada sebelum diproses.
 // Dipanggil tombol Hapus di index (GET ?id=...) + confirm() di browser.
@@ -10,3 +11,12 @@ if (isset($_GET['id'])) {
 } else {
   echo "id penulis tidak ditemukan.";
 }
+=======
+if (isset($_GET['id']) && $_SERVER['REQUEST_METHOD'] === "GET") {
+    $id = $_GET['id'];
+
+    echo "Penulis dengan id " . htmlspecialchars($id) . " berhasil dihapus.";
+}
+
+?>
+>>>>>>> cdd929f (feat: update source code from video)
