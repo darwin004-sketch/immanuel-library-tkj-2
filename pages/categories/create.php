@@ -1,3 +1,8 @@
+<?php
+$pageTitle = "Tambah Kategori";
+$pageSubtitle = "Buat kategori baru untuk mengelompokkan buku";
+?>
+
 <!DOCTYPE html>
 <!-- Halaman Kategori: data dari category-repository (getCategories/getCategory). -->
 <html lang="id">
@@ -9,6 +14,7 @@
 </head>
 <body>
   <div class="app-shell">
+<<<<<<< HEAD
   <?php // Tampilkan sidebar component agar tidak duplikasi.
   require_once('../../components/admin/sidebar.php'); ?>
 
@@ -19,6 +25,12 @@
       // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
       require '../../components/admin/topbar.php';
     ?>
+=======
+  <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
+
+    <main class="app-main">
+    <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
+>>>>>>> cdd929f (feat: update source code from video)
 
       <div class="app-content">
         <!-- Form POST: data dikirim ke actions, ditangkap via $_POST + isset(). -->
@@ -36,7 +48,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" class="btn btn-primary">Simpan Kategori</button>
+              <button type="submit" name="store" class="btn btn-primary">Simpan Kategori</button>
             </div>
           </div>
         </form>

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // Action: hanya memproses data (tanpa tampilan), sesuai alur pages -> actions.
 // isset() = validasi: pastikan data form benar-benar dikirim sebelum diproses.
 if (isset($_POST['title'])) {
@@ -10,3 +11,10 @@ if (isset($_POST['title'])) {
 } else {
   echo "Tidak ada data yang dikirim.";
 }
+=======
+if (isset($_POST['store']) && $_SERVER['REQUEST_METHOD'] === "POST") {
+    print_r($_POST);
+}
+
+?>
+>>>>>>> cdd929f (feat: update source code from video)
