@@ -19,33 +19,12 @@ $pageSubtitle = "Kelola data buku, kategori, dan penulis";
 </head>
 
 <body>
-<<<<<<< HEAD
-  <?php
-    // Ambil data dari repository (satu sumber data).
-    require '../../repositories/book-repository.php';
-    $books = getBooks();
-  ?>
-
-  <div class="app-shell">
-
-  <?php // Tampilkan sidebar component agar tidak duplikasi.
-  require_once('../../components/admin/sidebar.php'); ?>
-
-    <main class="app-main">
-    <?php
-      $pageTitle = "Manajemen Buku";
-      $pageSubtitle = "Kelola data buku, kategori, dan penulis";
-      // Tampilkan topbar; $pageTitle/$pageSubtitle sudah diset di atas.
-      require '../../components/admin/topbar.php';
-    ?>
-=======
   <div class="app-shell">
     <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
 
     <main class="app-main">
       <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
 
->>>>>>> cdd929f (feat: update source code from video)
       <div class="app-content">
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
