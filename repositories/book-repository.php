@@ -6,67 +6,76 @@ function getBooks()
 {
   global $pdo;
 
-  
-  $query = "select b.id, b.title, b.stock, c.name as category from books b
+  $query = "select b.id, b.title, b.stock, c.name as category, a.name as author
+            from books b
             left join categories c on b.category_id = c.id
-           ";
-  $stmt = $pdo->prepare($query);
-  $stmt->execute();
-
-  $books = $stmt->fetchAll();
-
-  $query = "select ba.book_id, a.name from book_author ba
+            left join book_author ba on b.id = ba.book_id
             left join authors a on ba.author_id = a.id
-           ";
+            order by b.id";
   $stmt = $pdo->prepare($query);
   $stmt->execute();
 
-  $bookAuthors = $stmt->fetchAll();
-
-  
-  $bookByAuthors = [];
-  foreach ($bookAuthors as $bookAuthor) {
-    $bookByAuthors[$bookAuthor['book_id']][] = $bookAuthor['name'];
+  $books = [];
+  foreach ($stmt->fetchAll() as $row) {
+    $bookId = $row['id'];
+    if (!isset($books[$bookId])) {
+      $books[$bookId] = [
+        'id' => $row['id'],
+        'title' => $row['title'],
+        'stock' => $row['stock'],
+        'category' => $row['category'],
+        'authors' => []
+      ];
+    }
+    if ($row['author'] !== null) {
+      $books[$bookId]['authors'][] = $row['author'];
+    }
   }
 
+  return array_values($books);
+}
 
-  foreach ($books as $index => $book) {
-    $books[$index]['authors'] = $bookByAuthors[$book['id']] ?? [];
-  }
+function isIsbnTaken($isbn, $ignoreBookId)
+{
+  global $pdo;
 
-  return $books;
+  $query = "select count(id) from books where isbn = :isbn and id != :book_id";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute([
+    'isbn' => $isbn,
+    'book_id' => (int) $ignoreBookId
+  ]);
+
+  return $stmt->fetchColumn() > 0;
 }
 
 function getBook($id)
 {
   global $pdo;
 
-
-  
-  $query = "select id, title, isbn, year, stock, category_id,  description from books where id = :id";
+  $query = "select b.id, b.title, b.isbn, b.year, b.stock, b.category_id,
+                   b.description, c.name as category
+            from books b
+            left join categories c on b.category_id = c.id
+            where b.id = :id";
   $stmt = $pdo->prepare($query);
-  $stmt->execute([
-    'id' => $id
-    ]);
- $book = $stmt->fetch();
+  $stmt->execute(['id' => $id]);
+  $book = $stmt->fetch();
 
- if(!isset($book)) {
-  header("Location: ../pages/books/index.php");
- }
+  if (!$book) {
+    return null;
+  }
 
- $query = "select a.id, from book_author ba
+  $query = "select a.id, a.name
+            from book_author ba
             left join authors a on ba.author_id = a.id
-            where ba.book_id = :book_id
-           ";
-$stmt = $pdo->prepare($query);
-$stmt->execute([
-  'book_id' => $book['id']
-  ]);
+            where ba.book_id = :book_id";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute(['book_id' => $book['id']]);
 
- $authorIds= $stmt->fetchAll();
- 
- $book['authors_ids'] = array_column($authorIds, 'id');
- 
-        
+  $authors = $stmt->fetchAll();
+  $book['author_ids'] = array_column($authors, 'id');
+  $book['authors'] = array_column($authors, 'name');
+
   return $book;
 }
